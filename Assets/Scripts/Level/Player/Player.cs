@@ -1,16 +1,21 @@
-using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private GameMoves _gameMoves;
+
     [field: SerializeField] public PlayerMovement Movement { get; private set; }
     [field: SerializeField] public Power Power { get; private set; }
     [field: SerializeField] public MonsterObserver Observer { get; private set; }
+    [field: SerializeField] public Health Health { get; private set; }
+    [field: SerializeField] public int Damage { get; private set; }
 
     private void OnEnable()
     {
-        Movement.StartedMoving += OnMoved;
-        Power.Died += OnDied;
+        Movement.StartedMoving += OnStartedMoving;
+        Power.Over += Die;
+        Health.Died += Die;
+        _gameMoves.Ended += OnGameMovesEnded;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -21,7 +26,10 @@ public class Player : MonoBehaviour
 
     private void OnDisable()
     {
-        Movement.StartedMoving -= OnMoved;
+        Movement.StartedMoving -= OnStartedMoving;
+        Power.Over -= Die;
+        Health.Died -= Die;
+        _gameMoves.Ended -= OnGameMovesEnded;
     }
 
     private void Merge(Monster monster)
@@ -34,13 +42,20 @@ public class Player : MonoBehaviour
             Power.Divide(monster.Power.Value);
     }
 
-    private void OnMoved()
+    private void OnStartedMoving()
     {
         Observer.Clear();
     }
 
-    private void OnDied()
+    private void Die()
     {
         Destroy(gameObject);
+    }
+
+    private void OnGameMovesEnded()
+    {
+        const int HealthMultiplier = 100;
+
+        Health.Init(Power.Value * HealthMultiplier);
     }
 }

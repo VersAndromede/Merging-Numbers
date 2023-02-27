@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum MonsterType
@@ -14,7 +15,7 @@ public class Monster : MonoBehaviour
     private void OnValidate()
     {
         if (Type == MonsterType.Divider && Power.Value < 1)
-            Debug.LogError("The monster is 'Dividing', in which case the strength cannot be less than 1.");
+            throw new InvalidOperationException("The monster is 'Dividing', in which case the strength cannot be less than 1.");
     }
 
     public void Init(MonsterType type, int power)

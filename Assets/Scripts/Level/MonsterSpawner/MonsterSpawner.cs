@@ -16,17 +16,17 @@ public class MonsterSpawner : MonoBehaviour
 
     private Monster _currentMonster;
 
-    private void Start()
-    {
-        if (_isSpawnAtStart)
-            SpawnOnlyPositive();
-    }
-
     private void OnEnable()
     {
         _gameMoves.Changed += TryRandomSpawn;
         _gameMoves.Changed += TryIncreaseDifficulty;
         _gameMoves.Ended += OnGameMovesEnded;
+    }
+
+    private void Start()
+    {
+        if (_isSpawnAtStart)
+            SpawnOnlyPositive();
     }
 
     private void OnDisable()

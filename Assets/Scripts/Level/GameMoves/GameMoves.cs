@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class GameMoves : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private Image _inputHandler;
+    [SerializeField] private UnityEvent _ended;
 
     [field: SerializeField] public int Count { get; private set; }
 
@@ -29,6 +31,9 @@ public class GameMoves : MonoBehaviour
         _inputHandler.raycastTarget = true;
 
         if (Count == 0)
+        {
             Ended?.Invoke();
+            _ended?.Invoke();
+        }
     }
 }

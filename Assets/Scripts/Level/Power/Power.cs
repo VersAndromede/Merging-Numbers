@@ -3,31 +3,31 @@ using UnityEngine;
 
 public class Power : MonoBehaviour
 {
-    [field: SerializeField] public int Value { get; private set; }
-
     public event Action Changed;
-    public event Action Died;
+    public event Action Over;
+
+    public int Value { get; private set; }
 
     public void Add(int count)
     {
         Value += count;
         Changed?.Invoke();
-        TryDie();
+        TryOver();
     }
 
     public void Divide(int divider)
     {
         if (divider < 1)
-            Debug.LogError("In this context it is incorrect to divide by a number less than 1.");
+            throw new ArgumentOutOfRangeException("In this context it is incorrect to divide by a number less than 1.");
 
         Value /= divider;
         Changed?.Invoke();
-        TryDie();
+        TryOver();
     }
 
-    private void TryDie()
+    private void TryOver()
     {
         if (Value < 0)
-            Died?.Invoke();
+            Over?.Invoke();
     }
 }

@@ -7,12 +7,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private float _travelTime;
 
-    public event Action StartedMoving;
-    public event Action FinishedMoving;
-
     private Coroutine _moveJob;
     private WaitForSeconds _waitTime;
     private float _elapsedTime;
+
+    public event Action StartedMoving;
+    public event Action FinishedMoving;
 
     private void Start()
     {

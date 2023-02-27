@@ -80,5 +80,6 @@ public class InputHandler : MonoBehaviour, IPointerDownHandler, IDragHandler, IE
     private void OnGameMovesEnded()
     {
         _isLockedMovement = true;
+        _panel.raycastTarget = false;
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5908088581051044075}
   - component: {fileID: 5908088581051044072}
   m_Layer: 0
-  m_Name: GameMove
+  m_Name: Game Moves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,4 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
   _inputHandler: {fileID: 0}
+  _ended:
+    m_PersistentCalls:
+      m_Calls: []
   <Count>k__BackingField: 5
