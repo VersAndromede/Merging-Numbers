@@ -32,10 +32,10 @@ public class Battlefield : MonoBehaviour
     private IEnumerator StartFight()
     {
         _boss.Init(_player.Damage);
-        StartCoroutine(_boss.MakeVulnerable());
+        StartCoroutine(_boss.BossHealth.MakeVulnerable());
         yield return _waitTime;
 
-        while (_player.Health.Value > 0 && _boss.Health.Value > 0)
+        while (_player.Health.Value > 0 && _boss.BossHealth.Health.Value > 0)
         {
             _player.Health.TakeDamage(_boss.Damage);
             yield return _waitTime;

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6214608780973312810}
   - component: {fileID: 8484568304004375303}
   - component: {fileID: 1410812710445237860}
+  - component: {fileID: 7048695775124120365}
   - component: {fileID: 2833569282571356490}
   m_Layer: 0
   m_Name: Boss
@@ -134,8 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3e13760442d1b47842bb0ac4790dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InvulnerabilityTime: 0.5
-  <Health>k__BackingField: {fileID: 2833569282571356490}
+  <BossHealth>k__BackingField: {fileID: 7048695775124120365}
   <Damage>k__BackingField: 200
   <RechargeTime>k__BackingField: 0.75
 --- !u!114 &1410812710445237860
@@ -150,8 +150,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed856d36bf17a54488178dd0a033c388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _boss: {fileID: 8484568304004375303}
   _animator: {fileID: 6214608780973312810}
   _gameMoves: {fileID: 0}
+--- !u!114 &7048695775124120365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8624573657008226172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1390dd9eedd21674683726045ebefaf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _invulnerabilityTime: 0.5
+  <Health>k__BackingField: {fileID: 2833569282571356490}
 --- !u!114 &2833569282571356490
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,11 +24,11 @@ public class PlayerMovement : MonoBehaviour
         if (_moveJob != null)
             return;
 
-        _moveJob = StartCoroutine(StartMoveJob(targetPosition));
+        _moveJob = StartCoroutine(StartMovement(targetPosition));
         StartedMoving?.Invoke();
     }
 
-    private IEnumerator StartMoveJob(Vector3 targetPosition)
+    private IEnumerator StartMovement(Vector3 targetPosition)
     {
         _elapsedTime = 0;
         Vector3 currentPosition = transform.position;
