@@ -11,8 +11,10 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] private int _startingMinPower;
     [SerializeField] private int _startingMaxPower;
     [SerializeField] private int _dividerPower;
-    [Range(0, 100)] [SerializeField] private int _probabilityPositiveMonster;
-    [Range(0, 100)] [SerializeField] private int _probabilityDividerMonster;
+    [Range(0, 100)] 
+    [SerializeField] private int _probabilityPositiveMonster;
+    [Range(0, 100)] 
+    [SerializeField] private int _probabilityDividerMonster;
 
     private Monster _currentMonster;
 
