@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 86415039}
   - component: {fileID: 86415038}
   - component: {fileID: 86415037}
+  - component: {fileID: 86415041}
   m_Layer: 5
   m_Name: Game Canvas
   m_TagString: Untagged
@@ -290,6 +291,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &86415041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86415036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0dd182451f42504ba385c740db70daf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvasScaler: {fileID: 86415038}
+  _cameraConstantWidth: {fileID: 963194230}
+  _scaleForPortraitOrientation: 1.75
 --- !u!1 &306451386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,7 +1044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _componentCamera: {fileID: 963194227}
-  _aspectRatio: {x: 16, y: 9}
+  <AspectRatio>k__BackingField: {x: 16, y: 9}
 --- !u!1 &1120603720
 GameObject:
   m_ObjectHideFlags: 0

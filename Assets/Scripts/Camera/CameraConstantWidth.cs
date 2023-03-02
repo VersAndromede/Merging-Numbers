@@ -1,16 +1,22 @@
+using System;
 using UnityEngine;
 
 public class CameraConstantWidth : MonoBehaviour
 {
     [SerializeField] private Camera _componentCamera;
-    [SerializeField] private Vector2 _aspectRatio;
 
-    private Vector2 _resolution;
-    private float _scalerMatch;
+    [field: SerializeField] public Vector2 AspectRatio { get; private set; }
+
     private float _initialSize;
     private float _targetAspect;
     private float _initialFov;
     private float _horizontalFov = 120f;
+
+    public event Action ScalerMatchChanged;
+
+    public Vector2 Resolution { get; private set; }
+    public float ScalerMatch { get; private set; }
+    public bool IsPortraitOrientation => Screen.width / (float)Screen.height * AspectRatio.x <= AspectRatio.y;
 
     private void Start()
     {
@@ -27,12 +33,12 @@ public class CameraConstantWidth : MonoBehaviour
         if (_componentCamera.orthographic)
         {
             float constantWidthSize = _initialSize * (_targetAspect / _componentCamera.aspect);
-            _componentCamera.orthographicSize = Mathf.Lerp(constantWidthSize, _initialSize, _scalerMatch);
+            _componentCamera.orthographicSize = Mathf.Lerp(constantWidthSize, _initialSize, ScalerMatch);
         }
         else
         {
             float constantWidthFov = CalcVerticalFov(_horizontalFov, _componentCamera.aspect);
-            _componentCamera.fieldOfView = Mathf.Lerp(constantWidthFov, _initialFov, _scalerMatch);
+            _componentCamera.fieldOfView = Mathf.Lerp(constantWidthFov, _initialFov, ScalerMatch);
         }
     }
 
@@ -45,22 +51,25 @@ public class CameraConstantWidth : MonoBehaviour
 
     private void IdentifyNewResolution()
     {
-        if (Screen.width / (float)Screen.height * _aspectRatio.x <= _aspectRatio.y)
-            SetNewResolution(1080, 1920, 0);
+        Vector2Int targetResolution = new Vector2Int(1920, 1080);
+
+        if (IsPortraitOrientation)
+            SetNewResolution(targetResolution.y, targetResolution.x, 0);
         else
-            SetNewResolution(1920, 1080, 1);
+            SetNewResolution(targetResolution.x, targetResolution.y, 1);
     }
 
     private void CalculateHorizontalFov(int resolutionWidth, int resolutionHeight)
     {
-        _resolution = new Vector2(resolutionWidth, resolutionHeight);
-        _targetAspect = _resolution.x / _resolution.y;
+        Resolution = new Vector2(resolutionWidth, resolutionHeight);
+        _targetAspect = Resolution.x / Resolution.y;
         _horizontalFov = CalcVerticalFov(_initialFov, 1 / _targetAspect);
     }
 
     private void SetNewResolution(int width, int height, int scalerMatch)
     {
         CalculateHorizontalFov(width, height);
-        _scalerMatch = scalerMatch;
+        ScalerMatch = scalerMatch;
+        ScalerMatchChanged?.Invoke();
     }
 }
