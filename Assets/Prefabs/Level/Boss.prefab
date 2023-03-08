@@ -103,7 +103,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4685323579091202778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 8.838833}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -114,7 +114,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 167, y: 46.5}
+  m_AnchoredPosition: {x: 169.4, y: 45.45049}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3633119707211985770
@@ -439,8 +439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e3e13760442d1b47842bb0ac4790dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _material: {fileID: 2100000, guid: 58f7b9885d3fc944abd2b4d26d396b30, type: 2}
   <BossHealth>k__BackingField: {fileID: 7048695775124120365}
-  <Damage>k__BackingField: 200
   <RechargeTime>k__BackingField: 0.75
 --- !u!114 &1410812710445237860
 MonoBehaviour:
@@ -524,7 +524,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3926062481953656480, guid: 163337b5160be2a43b06c4cff223431a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -56.8
+      value: -54.4
       objectReference: {fileID: 0}
     - target: {fileID: 4253461772167886885, guid: 163337b5160be2a43b06c4cff223431a, type: 3}
       propertyPath: m_text

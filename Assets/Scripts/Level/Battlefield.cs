@@ -3,26 +3,23 @@ using UnityEngine;
 
 public class Battlefield : MonoBehaviour
 {
-    [SerializeField] private Boss _boss;
+    [SerializeField] private BossLoader _bossLoader;
     [SerializeField] private Player _player;
     [SerializeField] private GameMoves _gameMoves;
 
     private WaitForSeconds _waitTime;
+    private Boss _boss;
 
     private void OnEnable()
     {
         _gameMoves.Ended += Fight;
-    }
-
-    private void Awake()
-    {
-        _boss.Init(_player.Damage);
-        _waitTime = new WaitForSeconds(_boss.RechargeTime);
+        _bossLoader.Loaded += OnBossLoaded;
     }
 
     private void OnDisable()
     {
         _gameMoves.Ended -= Fight;
+        _bossLoader.Loaded -= OnBossLoaded;
     }
 
     private void Fight()
@@ -32,14 +29,21 @@ public class Battlefield : MonoBehaviour
 
     private IEnumerator StartFight()
     {
-        _boss.Init(_player.Damage);
+        _boss.InitHealth(_player.Damage);
         StartCoroutine(_boss.BossHealth.MakeVulnerable());
         yield return _waitTime;
 
         while (_player.Health.Value > 0 && _boss.BossHealth.Health.Value > 0)
         {
-            _player.Health.TakeDamage(_boss.Damage);
+            _player.Health.TakeDamage(_boss.Data.Damage);
             yield return _waitTime;
         }
+    }
+
+    private void OnBossLoaded(Boss boss)
+    {
+        _boss = boss;
+        _boss.InitHealth(_player.Damage);
+        _waitTime = new WaitForSeconds(_boss.RechargeTime);
     }
 }

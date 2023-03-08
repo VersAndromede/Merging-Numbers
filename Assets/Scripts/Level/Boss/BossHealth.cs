@@ -16,16 +16,14 @@ public class BossHealth : MonoBehaviour, IPointerDownHandler
 
     public event Action<int> DamageReceived;
 
-    public void Init(int damageTaken)
+    public void Init(int maxHealth, int damageTaken)
     {
-        const int MaxHealthValue = 250;
-
         if (damageTaken < 0)
             throw new ArgumentOutOfRangeException();
 
         _rechargeTime = new WaitForSeconds(_invulnerabilityTime);
         _damageTaken = damageTaken;
-        Health.Init(MaxHealthValue);
+        Health.Init(maxHealth);
     }
 
     public void OnPointerDown(PointerEventData eventData)

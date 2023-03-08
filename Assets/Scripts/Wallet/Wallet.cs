@@ -23,7 +23,7 @@ public class Wallet : MonoBehaviour, IStorable
 
     public void Save()
     {
-        SaveData saveData = new SaveData();
+        SaveData saveData = SaveSystem.Load();
         saveData.Coins = Coins;
         SaveSystem.Save(saveData);
     }

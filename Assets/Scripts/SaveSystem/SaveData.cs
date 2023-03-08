@@ -4,4 +4,5 @@ using System;
 public class SaveData
 {
     public int Coins;
+    public int BossDataIndex;
 }
