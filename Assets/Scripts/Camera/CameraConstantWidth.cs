@@ -24,6 +24,9 @@ public class CameraConstantWidth : MonoBehaviour
         _initialFov = _componentCamera.fieldOfView;
         IdentifyNewResolution();
         _horizontalFov = CalcVerticalFov(_initialFov, 1 / _targetAspect);
+
+        float constantWidthFov = CalcVerticalFov(_horizontalFov, _componentCamera.aspect);
+        _componentCamera.fieldOfView = Mathf.Lerp(constantWidthFov, _initialFov, ScalerMatch);
     }
 
     private void Update()

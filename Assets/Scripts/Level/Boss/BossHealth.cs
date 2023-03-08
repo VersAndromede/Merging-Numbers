@@ -14,6 +14,8 @@ public class BossHealth : MonoBehaviour, IPointerDownHandler
     private int _damageTaken;
     private bool _isInvulnerable = true;
 
+    public event Action<int> DamageReceived;
+
     public void Init(int damageTaken)
     {
         const int MaxHealthValue = 250;
@@ -31,6 +33,7 @@ public class BossHealth : MonoBehaviour, IPointerDownHandler
         if (_isInvulnerable == false )
         {
             Health.TakeDamage(_damageTaken);
+            DamageReceived?.Invoke(_damageTaken);
             _isInvulnerable = true;
             _makeVulnerableJob = StartCoroutine(MakeVulnerable());
         }

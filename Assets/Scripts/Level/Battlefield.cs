@@ -14,8 +14,9 @@ public class Battlefield : MonoBehaviour
         _gameMoves.Ended += Fight;
     }
 
-    private void Start()
+    private void Awake()
     {
+        _boss.Init(_player.Damage);
         _waitTime = new WaitForSeconds(_boss.RechargeTime);
     }
 

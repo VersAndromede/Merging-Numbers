@@ -16,7 +16,8 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        OnHealthChanged();
+        _slider.value = (float)_health.Value / _health.MaxValue;
+        _text.text = $"{_health.Value}/{_health.MaxValue}";
     }
 
     private void OnDisable()

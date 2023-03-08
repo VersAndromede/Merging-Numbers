@@ -5,7 +5,6 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] private Monster _monsterPrefab;
     [SerializeField] private GameMoves _gameMoves;
     [SerializeField] private SpawnerObserver _observer;
-    [SerializeField] private bool _isSpawnAtStart;
     [SerializeField] private int _numberMovesToComplicate;
     [SerializeField] private int _powerProgression;
     [SerializeField] private int _startingMinPower;
@@ -16,6 +15,8 @@ public class MonsterSpawner : MonoBehaviour
     [Range(0, 100)] 
     [SerializeField] private int _probabilityDividerMonster;
 
+    [field: SerializeField] public bool HasPlayerAtStart { get; private set; }
+
     private Monster _currentMonster;
 
     private void OnEnable()
@@ -25,17 +26,18 @@ public class MonsterSpawner : MonoBehaviour
         _gameMoves.Ended += OnGameMovesEnded;
     }
 
-    private void Start()
-    {
-        if (_isSpawnAtStart)
-            SpawnOnlyPositive();
-    }
-
     private void OnDisable()
     {
         _gameMoves.Changed -= TryRandomSpawn;
         _gameMoves.Changed -= TryIncreaseDifficulty;
         _gameMoves.Ended -= OnGameMovesEnded;
+    }
+
+    public void SpawnOnlyPositive()
+    {
+        _currentMonster = Instantiate(_monsterPrefab, transform);
+        int power = Random.Range(_startingMinPower, _startingMaxPower);
+        _currentMonster.Init(MonsterType.Adding, power);
     }
 
     private void TryRandomSpawn()
@@ -60,13 +62,6 @@ public class MonsterSpawner : MonoBehaviour
 
             _currentMonster.Init(MonsterType.Adding, -power);
         }
-    }
-
-    private void SpawnOnlyPositive()
-    {
-        _currentMonster = Instantiate(_monsterPrefab, transform);
-        int power = Random.Range(_startingMinPower, _startingMaxPower);
-        _currentMonster.Init(MonsterType.Adding, power);
     }
 
     private void TryIncreaseDifficulty()
