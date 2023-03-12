@@ -16,7 +16,7 @@ public class BossLoader : MonoBehaviour, IStorable
         _currentBoss.BossHealth.Health.Died += OnBossDied;
     }
 
-    private void Start()
+    private void Awake()
     {
         Load();
 

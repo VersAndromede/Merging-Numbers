@@ -32,6 +32,11 @@ public class Player : MonoBehaviour
         _gameMoves.Ended -= OnGameMovesEnded;
     }
 
+    public void UpdateDamage()
+    {
+        Damage += SaveSystem.Load().UpgradeDatas[0].BonusValue;
+    }
+
     private void Merge(Monster monster)
     {
         Destroy(monster.gameObject);

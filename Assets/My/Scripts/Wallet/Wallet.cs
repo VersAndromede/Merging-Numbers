@@ -12,13 +12,19 @@ public class Wallet : MonoBehaviour, IStorable
         Load();
     }
 
-    public void AddCoins(int count)
+    public void AddCoins(uint count)
     {
-        if (count < 0)
-            throw new ArgumentOutOfRangeException();
+        ChangeCoins((int)count);
+    }
 
-        Coins += count;
-        CoinsChanged?.Invoke();
+    public void RemoveCoins(uint count)
+    {
+        ChangeCoins((int)-count);
+    }
+
+    public bool IsSolvent(int price)
+    {
+        return Coins >= price;
     }
 
     public void Save()
@@ -31,5 +37,11 @@ public class Wallet : MonoBehaviour, IStorable
     public void Load()
     {
         Coins = SaveSystem.Load().Coins;
+    }
+
+    private void ChangeCoins(int count)
+    {
+        Coins += count;
+        CoinsChanged?.Invoke();
     }
 }

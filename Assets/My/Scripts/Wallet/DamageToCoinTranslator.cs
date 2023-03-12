@@ -17,6 +17,6 @@ public class DamageToCoinTranslator : MonoBehaviour
 
     private void OnDamageReceived(int damageTaken)
     {
-        _wallet.AddCoins(damageTaken);
+        _wallet.AddCoins((uint)damageTaken);
     }
 }
