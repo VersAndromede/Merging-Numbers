@@ -7,7 +7,9 @@ public class DamageUpgrade : Upgrade
 
     public override int AffectValue()
     {
-        return (int)Mathf.Round(BonusValue * _multiplierValue);
+        int newBonusValue = (int)Mathf.Round(BonusValue * _multiplierValue);
+        int minNewBonusValue = 5;
+        return Mathf.Clamp(newBonusValue, minNewBonusValue, int.MaxValue);
     }
 
     public override int AffectPrice()

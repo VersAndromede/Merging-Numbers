@@ -62,7 +62,7 @@ public abstract class Upgrade : MonoBehaviour, IStorable
     {
         UpgradeData[] upgradeDatas = SaveSystem.Load().UpgradeDatas;
 
-        if (upgradeDatas[_id] == null)
+        if (upgradeDatas[_id] == null || upgradeDatas[_id].Level == 0)
             return;
 
         Level = upgradeDatas[_id].Level;

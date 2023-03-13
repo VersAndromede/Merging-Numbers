@@ -24,6 +24,14 @@ public class GameMoves : MonoBehaviour
         _player.Movement.FinishedMoving -= FinishMove;
     }
 
+    public void UpdateCount()
+    {
+        UpgradeData upgradeData = SaveSystem.Load().UpgradeDatas[2];
+
+        if (upgradeData != null)
+            Count += upgradeData.BonusValue;
+    }
+
     private void FinishMove()
     {
         Count--;

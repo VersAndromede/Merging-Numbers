@@ -34,7 +34,10 @@ public class Player : MonoBehaviour
 
     public void UpdateDamage()
     {
-        Damage += SaveSystem.Load().UpgradeDatas[0].BonusValue;
+        UpgradeData upgradeData = SaveSystem.Load().UpgradeDatas[0];
+
+        if (upgradeData != null)
+            Damage += upgradeData.BonusValue;
     }
 
     private void Merge(Monster monster)
