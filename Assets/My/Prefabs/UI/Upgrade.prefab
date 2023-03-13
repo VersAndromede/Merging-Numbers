@@ -1219,4 +1219,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfee15faefd9a11489d716743232141f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _button: {fileID: 7201339510366881636}
   _wallet: {fileID: 0}

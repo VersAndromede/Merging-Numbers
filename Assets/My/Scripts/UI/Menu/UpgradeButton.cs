@@ -6,11 +6,11 @@ public class UpgradeButton : MonoBehaviour
 
     public void TryBuyUpgrade(Upgrade upgrade)
     {
-        if (upgrade.CanImprove && _wallet.IsSolvent((int)upgrade.Price))
+        if (upgrade.CanImprove && _wallet.IsSolvent(upgrade.Price))
         {
+            _wallet.RemoveCoins((uint)upgrade.Price);
             upgrade.Improve();
             upgrade.Save();
-            _wallet.RemoveCoins((uint)upgrade.Price);
         }
     }
 }
